@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReservationForm from "./ReservationForm";
+import { createReservation } from "../utils/api";
 
 function CreateReservation() {
   const { goBack } = useHistory();
@@ -11,25 +12,27 @@ function CreateReservation() {
     mobile_number: "",
     reservation_date: "",
     reservation_time: "",
-    people: 1,
+    people: 0,
   }
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({ ...initialForm });
 
   const handleChange = ({ target }) => {
-    setForm({ ...form, [target.name]: target.value });
+    setForm({ ...form, [target.name]: (target.name === "people" ? Number(target.value) : target.value) });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     async function submitReservation() {
-      console.log(form);
-      setForm(initialForm);
+      const data = await createReservation(form);
+      console.log(`Data after API call: ${data}`)
+      setForm({ ...initialForm });
     }
     submitReservation();
   }
 
   const handleCancel = () => {
-    setForm(initialForm);
+    setForm({ ...initialForm });
     goBack();
   }
 
