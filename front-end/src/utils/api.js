@@ -85,6 +85,5 @@ export async function createReservation(reservation, signal) {
     body: JSON.stringify({ data: reservation }),
     signal,
   };
-  console.log("data being passed in:", options)
   return await fetchJson(url, options, {});
 }

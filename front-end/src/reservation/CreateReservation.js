@@ -4,7 +4,7 @@ import ReservationForm from "./ReservationForm";
 import { createReservation } from "../utils/api";
 
 function CreateReservation() {
-  const { goBack } = useHistory();
+  const { push, goBack } = useHistory();
 
   const initialForm = {
     first_name: "",
@@ -25,8 +25,8 @@ function CreateReservation() {
 
     async function submitReservation() {
       const data = await createReservation(form);
-      console.log(`Data after API call: ${data}`)
       setForm({ ...initialForm });
+      push(`/dashboard?date=${data.reservation_date}`)
     }
     submitReservation();
   }
