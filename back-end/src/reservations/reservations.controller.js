@@ -37,7 +37,8 @@ async function create(req, res) {
 }
 
 async function list(req, res) {
-  res.json({ data: await service.list() })
+  const reservation_date = req.query.date;
+  res.json({ data: await service.list(reservation_date) })
 }
 
 module.exports = {

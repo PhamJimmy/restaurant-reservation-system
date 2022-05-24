@@ -7,9 +7,11 @@ function create(newReservation) {
     .then((createdReservations) => createdReservations[0]);
 }
 
-function list() {
+function list(reservation_date) {
   return knex("reservations")
-    .select("*");
+    .select("*")
+    .where({ reservation_date })
+    .orderBy("reservation_time");
 }
 
 module.exports = {
