@@ -41,8 +41,8 @@ function hasValidNames(req, res, next) {
   if (data["first_name"].length < 1) {
     return next({
       status: 400,
-      message: "Property first_name cannot be empty."
-    })
+      message: "Property first_name cannot be empty.",
+    });
   }
 
   if (data["last_name"].length < 1) {
@@ -50,7 +50,7 @@ function hasValidNames(req, res, next) {
       status: 400,
       message: "Property last_name cannot be empty.",
     });
-  }  
+  }
 
   return next();
 }
@@ -98,28 +98,49 @@ function hasValidDate(req, res, next) {
     errors.push("Invalid reservation_date");
   }
 
-  const regex = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
-  if (!regex.test(time)) {
-    return next({
-      status: 400,
-      message: "Invalid reservation_time"
-    })
-  }
-
   if (reservation <= today) {
     return next({
       status: 400,
-      message: "Reservation must be made for future date/time."
-    })
+      message: "Reservation must be made for future date/time.",
+    });
   }
 
   if (new Date(date).getUTCDay() === 2) {
     return next({
       status: 400,
-      message: "The restaurant is closed on Tuesdays. Please pick another day."
-    })
+      message: "The restaurant is closed on Tuesdays. Please pick another day.",
+    });
   }
 
+  return next();
+}
+
+function hasValidTime(req, res, next) {
+  const { data = {} } = req.body;
+  const time = data["reservation_time"];
+
+  const regex = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+  if (!regex.test(time)) {
+    return next({
+      status: 400,
+      message: "Invalid reservation_time",
+    });
+  }
+
+  const hours = Number(time.split(":")[0]);
+  const minutes = Number(time.split(":")[1]);
+  if (hours < 10 || (hours === 10 && minutes < 30)) {
+    return next({
+      status: 400,
+      message: `Reservation must be after 10:30AM`,
+    });
+  }
+  if (hours > 21 || (hours === 21 && minutes > 30)) {
+    return next({
+      status: 400,
+      message: `Reservation must be before 9:30PM`,
+    });
+  }
   return next();
 }
 
@@ -138,6 +159,7 @@ module.exports = {
     hasOnlyValidProperties,
     hasValidNames,
     hasValidDate,
+    hasValidTime,
     hasValidMobileNumber,
     hasValidPeople,
     asyncErrorBoundary(create),
