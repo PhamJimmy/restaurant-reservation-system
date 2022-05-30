@@ -131,12 +131,30 @@ export async function createTable(table, signal) {
  * @returns {Promise<[table]>}
  *  a promise that resolves to a matching table with updated status and reservation id.
  */
- export async function seatTable(reservation_id, table_id) {
+ export async function seatTable(reservation_id, table_id, signal) {
    const url = `${API_BASE_URL}/tables/${table_id}/seat`;
    const options = {
      method: "PUT",
      body: JSON.stringify({ data: { reservation_id } }),
      headers,
+     signal,
+   };
+   return await fetchJson(url, options);
+ }
+
+/**
+ * Retrieves updates existing table to complete seating.
+ * @param table_id
+ * the table that the reservation is being finished
+ * @returns {Promise<[table]>}
+ *  a promise that resolves to a matching table with updated status and reservation id.
+ */
+ export async function finishTable(table_id, signal) {
+   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
+   const options = {
+     method: "DELETE",
+     headers,
+     signal,
    };
    return await fetchJson(url, options);
  }
