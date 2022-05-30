@@ -45,6 +45,13 @@ function hasValidTableName(req, res, next) {
     });
   }
 
+  if (data["table_name"].length === 1) {
+    return next({
+      status: 400,
+      message: "Property table_name must be longer than one character.",
+    });
+  }
+
   return next();
 }
 
@@ -87,7 +94,7 @@ function hasEnoughCapacity(req, res, next) {
   if (reservation.people > table.capacity) {
     return next({
       status: 400,
-      message: "This table does not have enough seating for the party size.",
+      message: "This table does not have enough capacity for the party size.",
     });
   }
 
@@ -108,9 +115,9 @@ function isNotOccupied(req, res, next) {
 }
 
 function hasReservationId(req, res, next) {
-  const { reservation_id } = req.body.data;
+  const { data = {} } = req.body;
 
-  if (reservation_id) {
+  if (data.reservation_id) {
     return next();
   }
   return next({

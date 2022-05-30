@@ -18,13 +18,15 @@ function CreateTable() {
     setForm({ ...form, [target.name]: target.name === "capacity" ? Number(target.value) : target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     const abortController = new AbortController();
-
-    createTable(form, abortController.signal)
-      .then(push(`/dashboard`))
-      .catch(setError);
+    try{
+      e.preventDefault();
+      await createTable(form, abortController.signal);
+      push(`/dashboard`);
+    } catch(error) {
+      setError(error);
+    }
     return () => abortController.abort();
   };
 
