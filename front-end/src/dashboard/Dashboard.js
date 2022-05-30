@@ -6,6 +6,7 @@ import { listReservations } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ReservationList from "../reservation/ReservationList";
 import { previous, today, next } from "../utils/date-time";
+import Tables from "../layout/tables/TableList";
 
 
 /**
@@ -43,6 +44,7 @@ function Dashboard({ date }) {
       </div>
       <ErrorAlert error={reservationsError} />
       <ReservationList reservations={reservations} />
+      <Tables />
     </main>
   );
 }

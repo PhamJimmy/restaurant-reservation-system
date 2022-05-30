@@ -1,6 +1,5 @@
 const service = require("./reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
-const { set } = require("../app");
 
 const VALID_PROPERTIES = ["first_name", "last_name", "mobile_number", "reservation_date", "reservation_time", "people"];
 
@@ -77,7 +76,7 @@ function hasValidPeople(req, res, next) {
   if (!Number.isInteger(people) || people < 1) {
     return next({
       status: 400,
-      message: `Property people must be a number of 1 or greater. ${people}`,
+      message: `Property people must be a number of 1 or greater.`,
     });
   } else {
     return next();
@@ -148,9 +147,31 @@ async function create(req, res) {
   res.status(201).json({ data: await service.create(req.body.data) });
 }
 
+async function reservationExists(req, res, next) {
+  const reservation_id = req.params.reservation_id || (req.body.data || {}).reservation_id;
+  const reservation = await service.read(reservation_id);
+  
+  if (reservation) {
+    res.locals.reservation = reservation;
+    return next();
+  }
+
+  return next({
+    status: 404,
+    message: `Reservation ID does not exist: ${reservation_id}`
+  })
+}
+
+async function read(req, res) {
+  res.json({ data: res.locals.reservation });
+}
+
+async function update(req, res) {
+
+}
+
 async function list(req, res) {
-  const reservation_date = req.query.date;
-  res.json({ data: await service.list(reservation_date) });
+  res.json({ data: await service.list(req.query.date) });
 }
 
 module.exports = {
@@ -164,5 +185,7 @@ module.exports = {
     hasValidPeople,
     asyncErrorBoundary(create),
   ],
+  read: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(read)],
   list: asyncErrorBoundary(list),
+  reservationExists
 };
