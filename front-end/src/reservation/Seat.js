@@ -37,7 +37,7 @@ function Seat() {
       e.preventDefault();
       await setError(null);
       await seatTable(reservationId, parseInt(tableId), abortController.signal)
-      push(`/dashboard`)
+      push("/dashboard");
     } catch(error) {
       setError(error);
     }

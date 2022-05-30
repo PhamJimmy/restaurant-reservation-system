@@ -11,6 +11,7 @@ function CreateTable() {
   const initialForm = {
     table_name: "",
     capacity: 0,
+    reservation_id: null,
   };
   const [form, setForm] = useState(initialForm);
 
