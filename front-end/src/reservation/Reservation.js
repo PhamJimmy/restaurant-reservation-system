@@ -4,7 +4,8 @@ function Reservation({ reservation }) {
 
   return (<>
     {JSON.stringify(reservation)}
-    <Link to={`/reservations/${reservation.reservation_id}/seat`}>Seat</Link>
+    <p data-reservation-id-status={reservation.reservation_id}>{reservation.status}</p>
+    {reservation.status === "booked" ? <Link to={`/reservations/${reservation.reservation_id}/seat`}>Seat</Link> : <></> }
   </>)
 }
 

@@ -103,6 +103,26 @@ export async function readReservation(reservation_id, signal) {
 }
 
 /**
+ * Updates reservation to the database.
+ * @param reservation_id
+ *  the reservation to update, which will be found via `id` property
+ * @param signal
+ *  optional AbortController.signal
+ * @returns {Promise<reservation>}
+ *  a promise that resolves the updated reservation.
+ */
+export async function updateReservationStatus(reservation_id, status, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}/status`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: { status } }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}
+
+/**
  * Saves table to the database.
  * @param table
  *  the table to save, which must not have an `id` property
