@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { listTables, finishTable } from "../../utils/api";
-import ErrorAlert from "../ErrorAlert";
+import { listTables, finishTable } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
 import Table from "./Table";
 
 function Tables() {
