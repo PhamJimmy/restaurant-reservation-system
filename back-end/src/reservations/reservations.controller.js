@@ -240,7 +240,10 @@ async function updateStatus(req, res) {
 }
 
 async function list(req, res) {
-  res.json({ data: await service.list(req.query.date) });
+  const date = req.query.date;
+  const mobile_number = req.query.mobile_number;
+  const data = date ? await service.list(date) : await service.search(mobile_number);
+  res.json({ data });
 }
 
 module.exports = {

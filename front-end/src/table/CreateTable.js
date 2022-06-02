@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createTable } from "../../utils/api";
-import ErrorAlert from "../ErrorAlert";
+import { createTable } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
 import TableForm from "./TableForm";
 
 function CreateTable() {
