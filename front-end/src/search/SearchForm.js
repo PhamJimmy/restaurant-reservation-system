@@ -15,10 +15,7 @@ function SearchForm({ form, handleChange, handleSubmit, handleCancel }) {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-      <button type="button" className="btn btn-secondary ml-2" onClick={handleCancel}>
-        Cancel
+        Find
       </button>
     </form>
   );
