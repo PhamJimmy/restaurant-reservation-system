@@ -1,13 +1,23 @@
 import Reservation from "./Reservation";
 
-function ReservationList({ reservations }) {
-  const content = reservations.length ? reservations.map((reservation) => <li key={reservation.reservation_id}><Reservation reservation={reservation}/></li>) : <p>No reservations for this date.</p>
+function ReservationList({ reservations, handleCancel, isSearch }) {
+  const results = reservations.filter((reservation) =>
+    isSearch ? true : reservation.status === "booked" || reservation.status === "seated"
+  );
+  const content = results.length ? (
+    results.map((result) => (
+      <Reservation key={result.reservation_id} reservation={result} handleCancel={() => handleCancel(result.reservation_id)} />
+    ))
+  ) : (
+    <p>No reservations for this date.</p>
+  );
 
   return (
-    <ul>
+    <>
+      <h3>Reservations</h3>
       {content}
-    </ul>
+    </>
   );
 }
 
-export default ReservationList
+export default ReservationList;

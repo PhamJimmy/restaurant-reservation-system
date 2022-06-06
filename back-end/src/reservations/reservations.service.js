@@ -14,6 +14,14 @@ function read(reservation_id) {
     .first();
 }
 
+function update(reservation) {
+  return knex("reservations")
+    .select("*")
+    .where({ reservation_id: reservation.reservation_id })
+    .update(reservation, "*")
+    .then((records) => records[0]);
+}
+
 function updateStatus(reservation) {
   return knex("reservations")
     .select("*")
@@ -30,9 +38,17 @@ function list(reservation_date) {
     .orderBy("reservation_time");
 }
 
+function search(mobile_number) {
+  return knex("reservations")
+    .whereRaw("translate(mobile_number, '() -', '') like ?", `%${mobile_number.replace(/\D/g, "")}%`)
+    .orderBy("reservation_date");
+}
+
 module.exports = {
   create,
   read,
+  update,
   updateStatus,
   list,
+  search,
 }

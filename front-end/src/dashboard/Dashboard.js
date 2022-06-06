@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import moment from "moment";
 
-import { listReservations } from "../utils/api";
+import { listReservations, updateReservationStatus } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ReservationList from "../reservation/ReservationList";
 import { previous, today, next } from "../utils/date-time";
-import Tables from "../layout/tables/TableList";
-
+import Tables from "../table/TableList";
 
 /**
  * Defines the dashboard page.
@@ -25,11 +24,24 @@ function Dashboard({ date }) {
   function loadDashboard() {
     const abortController = new AbortController();
     setReservationsError(null);
-    listReservations({ date }, abortController.signal)
-      .then(setReservations)
-      .catch(setReservationsError);
+    listReservations({ date }, abortController.signal).then(setReservations).catch(setReservationsError);
     return () => abortController.abort();
   }
+
+  const handleCancel = async (reservation_id) => {
+    const abortController = new AbortController();
+
+    try {
+      const confirm = window.confirm("Do you want to cancel this reservation? This cannot be undone.");
+      if (confirm) {
+        await updateReservationStatus(reservation_id, { status: "cancelled" }, abortController.signal);
+        await setReservations(await listReservations({ date }, abortController.signal));
+      }
+    } catch (error) {
+      setReservationsError(error);
+    }
+    return () => abortController.abort();
+  };
 
   return (
     <main>
@@ -37,14 +49,26 @@ function Dashboard({ date }) {
       <div className="d-md-flex mb-3">
         <h4 className="mb-0">Reservations for {moment(date).format("dddd - MMM DD, YYYY")}</h4>
       </div>
-      <div>
-        <button onClick={() => push(`/dashboard?date=${previous(date)}`)}>Previous</button>
-        <button onClick={() => push(`/dashboard?date=${today()}`)}>Today</button>
-        <button onClick={() => push(`/dashboard?date=${next(date)}`)}>Next</button>
+      <div className="btn-group" role="group" aria-label="Date selector">
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${previous(date)}`)}>
+          &#60; Previous
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${today()}`)}>
+          Today
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${next(date)}`)}>
+          Next &#62;
+        </button>
       </div>
       <ErrorAlert error={reservationsError} />
-      <ReservationList reservations={reservations} />
-      <Tables />
+      <div className="row mt-2">
+        <div className="col">
+          <ReservationList reservations={reservations} handleCancel={handleCancel} isSearch={false} />
+        </div>
+        <div className="col">
+          <Tables />
+        </div>
+      </div>
     </main>
   );
 }

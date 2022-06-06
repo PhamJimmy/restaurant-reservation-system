@@ -89,6 +89,26 @@ export async function createReservation(reservation, signal) {
 }
 
 /**
+ * Saves the updated reservation to the database.
+ * @param reservation
+ *  the reservation to save, which must have an `id` property
+ * @param signal
+ *  optional AbortController.signal
+ * @returns {Promise<reservation>}
+ *  a promise that resolves the saved reservation.
+ */
+export async function updateReservation(reservation, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation.reservation_id}`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: reservation }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}
+
+/**
  * Reads reservation from the database.
  * @param reservation_id
  *  the reservation to read
@@ -116,7 +136,7 @@ export async function updateReservationStatus(reservation_id, status, signal) {
   const options = {
     method: "PUT",
     headers,
-    body: JSON.stringify({ data: { status } }),
+    body: JSON.stringify({ data: status }),
     signal,
   };
   return await fetchJson(url, options, {});

@@ -1,4 +1,21 @@
+html, body, #layout, .navbar {
+  height: 100%;
+}
+
 .side-bar {
   background-color: #393a44;
   min-width: 200px;
+}
+
+.status {
+  color: grey;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.card-text {
+  margin-bottom: 5px;
 }
