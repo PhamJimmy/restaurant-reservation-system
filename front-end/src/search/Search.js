@@ -3,10 +3,8 @@ import SearchForm from "./SearchForm";
 import ReservationList from "../reservation/ReservationList";
 import { listReservations, updateReservationStatus } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-import { useHistory } from "react-router";
 
 function Search() {
-  const { push } = useHistory();
   const [searched, setSearched] = useState(false);
   const [error, setError] = useState(null);
   const [reservations, setReservations] = useState([]);
@@ -23,6 +21,7 @@ function Search() {
     const abortController = new AbortController();
     try {
       e.preventDefault();
+      setError(null);
       await setReservations(await listReservations({ mobile_number: form.mobile_number }), abortController.signal);
       setSearched(true);
     } catch (error) {
@@ -54,11 +53,11 @@ function Search() {
   );
 
   return (
-    <>
+    <div>
       <SearchForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} />
       <ErrorAlert error={error} />
-      {searched ? searchResults : <></>}
-    </>
+      <div className="col-6">{searched ? searchResults : <></>}</div>
+    </div>
   );
 }
 

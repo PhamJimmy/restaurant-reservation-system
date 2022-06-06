@@ -1,29 +1,36 @@
-
 function TableForm({ form, handleChange, handleSubmit, handleCancel }) {
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="table_name">Table Name</label>
-        <input
-          name="table_name"
-          id="table_name"
-          className="form-control"
-          value={form.table_name}
-          onChange={handleChange}
-          required={true}
-        ></input>
-      </div>
-      <div className="form-group">
-        <label htmlFor="capacity">Table Capacity</label>
-        <input
-          name="capacity"
-          id="capacity"
-          type="number"
-          value={form.capacity}
-          onChange={handleChange}
-          min={1}
-          required={true}
-        />
+      <div className="row">
+        <div className="input-group mb-3 col-md-6">
+          <div className="input-group-prepend">
+            <span className="input-group-text">Table Name</span>
+          </div>
+          <input
+            name="table_name"
+            id="table_name"
+            className="form-control"
+            type="text"
+            value={form.table_name}
+            onChange={handleChange}
+            required={true}
+          ></input>
+        </div>
+        <div className="input-group mb-3 col-md-6">
+          <div className="input-group-prepend">
+            <span className="input-group-text">Table Capacity</span>
+          </div>
+          <input
+            name="capacity"
+            id="capacity"
+            type="number"
+            className="form-control"
+            value={form.capacity}
+            onChange={handleChange}
+            min={1}
+            required={true}
+          />
+        </div>
       </div>
       <button type="submit" className="btn btn-primary">
         Submit
