@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Reservation({ reservation, handleCancel }) {
-  const { first_name, last_name, mobile_number, reservation_date, reservation_time, people, status } = reservation;
+  const { reservation_id, first_name, last_name, mobile_number, reservation_date, reservation_time, people, status } = reservation;
   const phone = mobile_number.replace(/(\d{3})(\d{3})(\d{4})/, "$1 - $2 - $3");
   const date = new Date(reservation_date).toLocaleDateString();
 
@@ -59,7 +59,12 @@ function Reservation({ reservation, handleCancel }) {
           <p className="card-title">
             {first_name} {last_name}
           </p>
-          <p className="card-title"><span className="status">Status:</span> <span className={`badge ${badge[status]}`}>{status}</span></p>
+          <p className="card-title">
+            <span className="status">Status:</span>{" "}
+            <span className={`badge ${badge[status]}`} data-reservation-id-status={reservation_id}>
+              {status}
+            </span>
+          </p>
         </div>
         <p className="card-text">
           {date} - {time}
