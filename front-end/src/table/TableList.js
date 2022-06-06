@@ -40,13 +40,10 @@ function Tables() {
   return (
     <>
       <ErrorAlert error={error} />
-      <ul>
+        <h3>Tables</h3>
         {tables.map((table) => (
-          <li key={table.table_id}>
-            <Table table={table} handleFinish={() => handleFinish(table.table_id)} />
-          </li>
+          <Table key={table.table_id} table={table} handleFinish={() => handleFinish(table.table_id)} />
         ))}
-      </ul>
     </>
   );
 }

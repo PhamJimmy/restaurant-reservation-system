@@ -49,18 +49,26 @@ function Dashboard({ date }) {
       <div className="d-md-flex mb-3">
         <h4 className="mb-0">Reservations for {moment(date).format("dddd - MMM DD, YYYY")}</h4>
       </div>
-      <div>
-        <button onClick={() => push(`/dashboard?date=${previous(date)}`)}>Previous</button>
-        <button onClick={() => push(`/dashboard?date=${today()}`)}>Today</button>
-        <button onClick={() => push(`/dashboard?date=${next(date)}`)}>Next</button>
+      <div className="btn-group" role="group" aria-label="Date selector">
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${previous(date)}`)}>
+          &#60; Previous
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${today()}`)}>
+          Today
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={() => push(`/dashboard?date=${next(date)}`)}>
+          Next &#62;
+        </button>
       </div>
       <ErrorAlert error={reservationsError} />
-      <ReservationList
-        reservations={reservations}
-        handleCancel={handleCancel}
-        isSearch={false}
-      />
-      <Tables />
+      <div className="row mt-2">
+        <div className="col">
+          <ReservationList reservations={reservations} handleCancel={handleCancel} isSearch={false} />
+        </div>
+        <div className="col">
+          <Tables />
+        </div>
+      </div>
     </main>
   );
 }
