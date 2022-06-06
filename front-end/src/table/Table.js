@@ -3,7 +3,7 @@ function Table({ table, handleFinish }) {
 
   const badge = {
     free: "badge-primary",
-    occupied: "badge-light",
+    occupied: "badge-warning",
   };
 
   return (

@@ -47,7 +47,7 @@ function Reservation({ reservation, handleCancel }) {
 
   const badge = {
     booked: "badge-primary",
-    seated: "badge-light",
+    seated: "badge-warning",
     finished: "badge-dark",
     cancelled: "badge-danger"
   }
