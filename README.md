@@ -113,7 +113,7 @@ New Table
 <!-- API DOCUMENTATION -->
 ## API Documentation
 
-See the [API Documentation](https://restaurant-reservation-system-backend-phi.vercel.app/api-docs) for a breakdown of the endpoints.
+See the [API Documentation](https://jpr-restaurant-res-backend.herokuapp.com/api-docs) for a breakdown of the endpoints.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
