@@ -15,7 +15,7 @@ function Layout() {
   return (
     <div id="layout" className="container-fluid">
       <div className="row h-100">
-        <div className="col-md-2 side-bar sticky-top vh-100">
+        <div id="menu" className="col-md-2 side-bar sticky-top">
           <Menu />
         </div>
         <div className="col">

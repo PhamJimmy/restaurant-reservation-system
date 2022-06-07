@@ -62,10 +62,10 @@ function Dashboard({ date }) {
       </div>
       <ErrorAlert error={reservationsError} />
       <div className="row mt-2">
-        <div className="col">
+        <div className="col-lg-6">
           <ReservationList reservations={reservations} handleCancel={handleCancel} isSearch={false} />
         </div>
-        <div className="col">
+        <div className="col-lg-6">
           <Tables />
         </div>
       </div>

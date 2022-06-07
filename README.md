@@ -7,7 +7,7 @@
   <p align="center">
     Periodic Tables is a reservation systems that will help restaurants streamline their operations by incorporating a customer, reservation, and table management web application.
     <br />
-    <a href="https://jpr-restaurant-res-frontend.herokuapp.com/"><strong>View the demo »</strong></a>
+    <a href="https://restaurant-reservation-system-frontend.vercel.app/dashboard"><strong>View the demo »</strong></a>
     <br />
     <br />
 
@@ -33,6 +33,7 @@
       </ul>
     </li>
     <li><a href="#pages">Pages</a></li>
+    <li><a href="#api-documentation">API Documentation</a></li>
     <li><a href="#user-stories">User Stories</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -58,6 +59,8 @@
 * [Knex.js](https://knexjs.org/)
 * [Express](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
+* [Swagger](https://www.npmjs.com/package/express-jsdoc-swagger)
+* [Swagger UI](https://www.npmjs.com/package/swagger-ui-express)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -102,6 +105,16 @@ New Reservation
 
 New Table
 <img src="demo-table-screenshot.png">
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- API DOCUMENTATION -->
+## API Documentation
+
+See the [API Documentation](https://restaurant-reservation-system-backend-phi.vercel.app/api-docs) for a breakdown of the endpoints.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

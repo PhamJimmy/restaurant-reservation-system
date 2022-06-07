@@ -56,7 +56,7 @@ function Search() {
     <div>
       <SearchForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} />
       <ErrorAlert error={error} />
-      <div className="col-6 mt-3">{searched ? searchResults : <></>}</div>
+      <div className="col-lg-6 mt-3">{searched ? searchResults : <></>}</div>
     </div>
   );
 }

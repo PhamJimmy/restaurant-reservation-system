@@ -34,7 +34,7 @@ function Reservation({ reservation, handleCancel }) {
         <div>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-dark"
             onClick={handleCancel}
             data-reservation-id-cancel={reservation.reservation_id}
           >
@@ -48,7 +48,7 @@ function Reservation({ reservation, handleCancel }) {
   const badge = {
     booked: "badge-primary",
     seated: "badge-warning",
-    finished: "badge-dark",
+    finished: "badge-light",
     cancelled: "badge-danger"
   }
 

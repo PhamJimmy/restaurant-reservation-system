@@ -1,3 +1,4 @@
+
 .side-bar {
   background-color: #393a44;
   min-width: 200px;
@@ -14,4 +15,10 @@
 
 .card-text {
   margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+  #menu {
+    height: 100vh;
+  }
 }
