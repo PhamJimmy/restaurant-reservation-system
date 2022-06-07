@@ -5,9 +5,9 @@
 <h3 align="center">Periodic Tables</h3>
 
   <p align="center">
-    Periodic Tables is a reservation systems that will help restaurants streamline their operations by incorporating a customer, reservation, and table management web application.
+    Periodic Tables is a reservation systems that will help restaurants streamline their operations by incorporating a customer, reservation, and table management web application. It allows the creation of new reservations and new tables, as well as updating them to reflect the most up-to-date statuses.
     <br />
-    <a href="https://restaurant-reservation-system-frontend.vercel.app/dashboard"><strong>View the demo »</strong></a>
+    <a href="https://restaurant-reservation-system-frontend.vercel.app/dashboard"><strong>View the live demo »</strong></a>
     <br />
     <br />
 
@@ -94,16 +94,20 @@ To get a local copy up and running follow these steps.
 <!-- PAGE EXAMPLES -->
 ## Pages
 
-Dashboard
+### Dashboard
+The main page showing the day's reservations and all the table statuses.
 <img src="demo-screenshot.png">
 
-Search
+### Search
+Entering in a phone number will search the database for any matches regardless of reservation status.
 <img src="demo-search-screenshot.png">
 
-New Reservation
+### New Reservation
+The form to create a new reservation which will be assigned a new reservation_id.
 <img src="demo-reservation-screenshot.png">
 
-New Table
+### New Table
+The form to create a new table which will be assigned a new table_id.
 <img src="demo-table-screenshot.png">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
