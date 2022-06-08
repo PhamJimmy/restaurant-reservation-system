@@ -127,7 +127,7 @@ See the [API Documentation](https://jpr-restaurant-res-backend.herokuapp.com/api
 <!-- USER STORIES -->
 ## User Stories
 
-See the [user stories](https://github.com/PhamJimmy/restaurant-reservation-system/blob/main/USERSTORIES.md) for a full list of the original proposed features.
+See the [Trello Board](https://trello.com/b/r84KFJ7N/restaurant-reservation-system) for a full list of the original proposed features.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
