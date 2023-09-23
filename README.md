@@ -117,7 +117,9 @@ The form to create a new table which will be assigned a new table_id.
 <!-- API DOCUMENTATION -->
 ## API Documentation
 
-See the [API Documentation](https://jpr-restaurant-res-backend.herokuapp.com/api-docs) for a breakdown of the endpoints.
+
+~~See the [API Documentation](https://jpr-restaurant-res-backend.herokuapp.com/api-docs) for a breakdown of the endpoints.~~
+The documentation (via Swagger API) will be deprecated soon once Heroku's free hosting tier changes.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
